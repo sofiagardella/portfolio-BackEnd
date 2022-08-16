@@ -1,7 +1,7 @@
 package com.portfolio.springboot.controller;
 
-import com.portfolio.springboot.model.Usuario;
-import com.portfolio.springboot.service.IUsuarioService;
+import com.portfolio.springboot.model.Persona;
+import com.portfolio.springboot.service.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,31 +15,31 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class UsuarioController {
+public class PersonaController {
     
     @Autowired 
-    IUsuarioService usuServ;
+    IPersonaService persServ;
     
     
-    @GetMapping ("/usuarios/ver")
+    @GetMapping ("/personas/ver")
     @ResponseBody
-    public List<Usuario> verUsuario(){
-        return usuServ.verUsuario();
+    public List<Persona> verPersona(){
+        return persServ.verPersona();
     }
     
-    @PostMapping ("/usuario/crear")
-    public String crearUsuario (@RequestBody Usuario usuario){
-        usuServ.saveUsuario(usuario);
-        return "Usuario creado";
+    @PostMapping ("/persona/crear")
+    public String crearPersona(@RequestBody Persona persona){
+        persServ.savePersona(persona);
+        return "Persona creada";
     }
     
-    @DeleteMapping ("/usuario/eliminar/{id}")
-    public void eliminarUsuario (@PathVariable Long id){
-        usuServ.eliminarUsuario(id);
+    @DeleteMapping ("/persona/eliminar/{id}")
+    public void eliminarPersona (@PathVariable Long id){
+        persServ.eliminarPersona(id);
     }
     
-    @PutMapping ("/usuario/editar/{id}")
-    public Usuario editarUsuario (@PathVariable Long id,
+    @PutMapping ("/persona/editar/{id}")
+    public Persona editarPersona (@PathVariable Long id,
                                   @RequestParam("nombre") String nuevoNombre,
                                   @RequestParam("apellido") String nuevoApellido,
                                   @RequestParam("puesto") String nuevoPuesto,
@@ -47,15 +47,15 @@ public class UsuarioController {
                                   @RequestParam("pais") String nuevoPais,
                                   @RequestParam("img") String nuevoImg){
         
-        Usuario usuario = usuServ.buscarUsuario(id);
-        usuario.setNombre(nuevoNombre);
-        usuario.setApellido(nuevoApellido);
-        usuario.setPuesto(nuevoPuesto);
-        usuario.setProvincia(nuevoProvincia);
-        usuario.setPais(nuevoPais);
+        Persona persona = persServ.buscarPersona(id);
+        persona.setNombre(nuevoNombre);
+        persona.setApellido(nuevoApellido);
+        persona.setPuesto(nuevoPuesto);
+        persona.setProvincia(nuevoProvincia);
+        persona.setPais(nuevoPais);
         
-        usuServ.saveUsuario(usuario);
-        return usuario;
+        persServ.savePersona(persona);
+        return persona;
     }   
    
 }

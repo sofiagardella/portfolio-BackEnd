@@ -12,7 +12,7 @@ import lombok.Setter;
 
 @Getter @Setter
 @Entity
-public class Usuario {
+public class Skills {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,10 +20,6 @@ public class Usuario {
     
     @NotNull
     @Size (min = 1, max = 100, message = "mínimo 1 caracter, máximo 100 caracteres")
-    private String nombre;
-    private String apellido;
-    private String puesto;
-    private String provincia;
-    private String pais;
-    private String img;
+    private String habilidad;
+    private String avance;
 }
